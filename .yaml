@@ -1,0 +1,9 @@
+routes:
+  home:
+    path: /
+    controller: HomeController
+    action: index
+  clients:
+    path: /clients
+    controller: ClientController
+    action: index
