@@ -1,17 +1,33 @@
 <?php
-namespace Src\App\Controller;
 
-use Src\Core\Controller;
-use Src\App\Model\ClientModel;
+namespace App\Controller;
 
-class ClientController extends Controller
+use App\Model\ClientModel;
+
+class ClientController
 {
-    public function index()
+    private $clientModel;
+
+    public function __construct($clientModel)
     {
-        $clientModel = new ClientModel();
-        $clients = $clientModel->getAllClients();
-        $this->renderView('clients/index', ['clients' => $clients]);
+        $this->clientModel = $clientModel;
     }
 
-    // Autres méthodes...
+    public function listerClients()
+    {
+        $clients = $this->clientModel->getAllClients();
+        // Rendre la vue avec la liste des clients
+    }
+
+    public function afficherClient($clientId)
+    {
+        $client = $this->clientModel->getClientById($clientId);
+        // Rendre la vue avec les détails du client
+    }
+
+    public function ajouterClient($data)
+    {
+        $this->clientModel->addClient($data);
+        // Rediriger vers la liste des clients ou afficher un message de succès
+    }
 }
